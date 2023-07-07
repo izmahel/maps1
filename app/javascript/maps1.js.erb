@@ -32,20 +32,18 @@ function setMarker(map, lat, lng, site) {
 }
 
 function set_datos() {
-  if (window.location.pathname == "/") {
-    rq.open("GET", `${window.location}/sitios`);
-    rq.responseType = "json";
-    rq.send();
-    rq.onreadystatechange = function (e) {
-      if (rq.readyState === 4 && rq.status === 200) {
-      sitios = rq.response;
-      setMarkers();
-      console.log(":)");
-      } else if (rq.readyState === 4 && rq.status === 401) {
-      consoloe.log("Error al solicitar datos");
-      }
-    };
-  }
+  rq.open("GET", `${window.location}/sitios`);
+  rq.responseType = "json";
+  rq.send();
+  rq.onreadystatechange = function (e) {
+    if (rq.readyState === 4 && rq.status === 200) {
+    sitios = rq.response;
+    setMarkers();
+    console.log(":)");
+    } else if (rq.readyState === 4 && rq.status === 401) {
+    consoloe.log("Error al solicitar datos");
+    }
+  };
 }
 
 function setMarkers() {
